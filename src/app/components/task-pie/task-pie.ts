@@ -32,6 +32,7 @@ export class TaskPieComponent implements AfterViewInit, OnChanges {
           datasets: [{
             data: [this.completeCount, this.incompleteCount],
             backgroundColor: ['#3db345', '#e53935'],
+            hoverBackgroundColor: ['#2e8b2e', '#b71c1c']
           }]
         },
         options: {
