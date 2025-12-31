@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://localhost:4200/overview -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="module" src="./TodoApp_files/client"></script>
+
+  
+  <title>TodoApp</title>
+  <!--<base href="/">--><base href=".">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="http://localhost:4200/favicon.ico">
+<link rel="stylesheet" href="./TodoApp_files/styles.css"><style>
+
+table[_ngcontent-ng-c4037799648] {
+  width: 100%;
+  position: relative;
+  margin: 2;
+  font-family:
+    "Fira Code",
+    Arial,
+    sans-serif;
+  background: #fff;
+  border-collapse: collapse;
+  border-radius: 22px;
+}
+th[_ngcontent-ng-c4037799648], 
+td[_ngcontent-ng-c4037799648] {
+  padding: 0.75rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+th[_ngcontent-ng-c4037799648] {
+  background: #f5f5f5;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #333;
+}
+tr[_ngcontent-ng-c4037799648]:hover {
+  background: #f9fafb;
+  transition: background 0.2s;
+}
+tbody[_ngcontent-ng-c4037799648]   tr[_ngcontent-ng-c4037799648]:last-child   td[_ngcontent-ng-c4037799648] {
+  border-bottom: none;
+}
+.modal-backdrop[_ngcontent-ng-c4037799648] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal[_ngcontent-ng-c4037799648] {
+  width: 400px;
+  height: 200px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  min-width: 300px;
+}
+.modal-title-text[_ngcontent-ng-c4037799648] {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family:
+    "Fira Code",
+    Arial,
+    sans-serif;
+  font-weight: 600;
+}
+.task-name-label[_ngcontent-ng-c4037799648], 
+.deadline-label[_ngcontent-ng-c4037799648] {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family:
+    "Fira Code",
+    Arial,
+    sans-serif;
+  font-weight: 500;
+}
+.submit-button[_ngcontent-ng-c4037799648], 
+.cancel-button[_ngcontent-ng-c4037799648] {
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-family:
+    "Fira Code",
+    Arial,
+    sans-serif;
+  font-weight: 500;
+  margin-right: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.submit-button[_ngcontent-ng-c4037799648] {
+  position: relative;
+  right: 5px;
+}
+.cancel-button[_ngcontent-ng-c4037799648] {
+  position: relative;
+  left: 220px;
+}
+.add-item-button[_ngcontent-ng-c4037799648] {
+  position: relative;
+  left: 1730px;
+  background: white;
+  color: black;
+  border-radius: 8px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-family:
+    Fira Code,
+    Arial,
+    sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(89, 120, 155, 0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+button[_ngcontent-ng-c4037799648]:hover, 
+button[_ngcontent-ng-c4037799648]:focus {
+  background: #d6e0ee;
+  box-shadow: 0 4px 16px rgba(89, 120, 155, 0.15);
+  outline: none;
+}
+/*# sourceMappingURL=/table-list.css.map */</style></head>
+<body>
+  <app-root ng-version="20.3.15"><router-outlet></router-outlet><app-overview><app-table-list _nghost-ng-c4037799648=""><button _ngcontent-ng-c4037799648="" class="add-item-button">Add Item</button><table _ngcontent-ng-c4037799648=""><thead _ngcontent-ng-c4037799648=""><tr _ngcontent-ng-c4037799648=""><th _ngcontent-ng-c4037799648="">Task</th><th _ngcontent-ng-c4037799648="">Deadline</th><th _ngcontent-ng-c4037799648="">Complete</th></tr></thead><tbody _ngcontent-ng-c4037799648=""><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Do the dishes</td><td _ngcontent-ng-c4037799648="">1 January 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Get a grip</td><td _ngcontent-ng-c4037799648="">15 September 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Sort your life out</td><td _ngcontent-ng-c4037799648="">30 April 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Climb plastic rocks</td><td _ngcontent-ng-c4037799648="">12 August 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Eat</td><td _ngcontent-ng-c4037799648="">15 February 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Watch paint dry</td><td _ngcontent-ng-c4037799648="">30 March 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Play fortnite</td><td _ngcontent-ng-c4037799648="">12 January 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Kill flutter</td><td _ngcontent-ng-c4037799648="">15 May 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Finish this</td><td _ngcontent-ng-c4037799648="">20 June 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Go for a walk</td><td _ngcontent-ng-c4037799648="">10 July 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><tr _ngcontent-ng-c4037799648=""><td _ngcontent-ng-c4037799648="">Feed the dog</td><td _ngcontent-ng-c4037799648="">4 February 2026</td><td _ngcontent-ng-c4037799648=""><input _ngcontent-ng-c4037799648="" type="checkbox" class="ng-untouched ng-pristine ng-valid"></td></tr><!--container--></tbody></table><!--container--></app-table-list></app-overview><!--container--></app-root>
+<script src="./TodoApp_files/polyfills.js" type="module"></script><script src="./TodoApp_files/main.js" type="module"></script>
+
+</body></html>

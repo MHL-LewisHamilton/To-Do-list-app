@@ -5,6 +5,7 @@
             <th>Task</th>
             <th>Deadline</th>
             <th>Complete</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -13,6 +14,10 @@
             <td>{{ formatDate(item.date) }}</td>
             <td>
                 <input type="checkbox" [(ngModel)]="item.complete" (change)="markAsComplete(item)"/>
+            </td>
+            <td>
+              <button class="edit-task-button" type="button" (click)="openEditTaskModal(item)">Edit Task</button>
+              <button class="delete-task-button" type="button" (click)="removeItem(item)">Delete Task</button>
             </td>
         </tr>
     </tbody>
@@ -35,6 +40,26 @@
       <br>
       <button class='submit-button' type="submit">Add</button>
       <button class='cancel-button' type="button" (click)="closeModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="showEditTaskModal">
+  <div class="modal">
+    <h2 class="modal-title-text">Edit Task</h2>
+    <form (ngSubmit)="onEditSubmit()">
+      <label class="task-name-label">
+        Task Name:
+        <input type="text" [(ngModel)]="editTaskName" name="editTaskName" required />
+      </label>
+      <br>
+      <label class="deadline-label">
+        Deadline:
+        <input type="date" [(ngModel)]="editTaskDate" name="editTaskDate" required />
+      </label>
+      <br>
+      <button class='submit-button' type="submit">Save</button>
+      <button class='cancel-button' type="button" (click)="closeEditModal()">Cancel</button>
     </form>
   </div>
 </div>
