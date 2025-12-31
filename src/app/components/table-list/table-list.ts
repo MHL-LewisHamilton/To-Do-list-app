@@ -1,20 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../../models/item.model';
 import { TaskService, Task } from '../../services/task.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TaskPieComponent } from '../task-pie/task-pie';
 
 @Component({
   selector: 'app-table-list',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule, TaskPieComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './table-list.html',
   styleUrl: './table-list.scss',
 })
 export class TableList {
+  @Output() tasksChanged = new EventEmitter<void>();
 
   public showModal = false;
   public showEditTaskModal = false;
@@ -34,6 +36,7 @@ export class TableList {
   loadTasks() {
     this.taskService.getTasks().subscribe((data: Task[]) => {
       this.items = data.map(t => new Item(t.name, new Date(t.deadline), t.complete, t.id));
+      this.tasksChanged.emit();
     });
   }
 
