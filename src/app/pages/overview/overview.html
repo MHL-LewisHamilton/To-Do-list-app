@@ -1,1 +1,8 @@
-<app-table-list></app-table-list>
+<div class="overview-flex">
+	<div class="overview-table">
+		<app-table-list (tasksChanged)="loadTasks()"></app-table-list>
+	</div>
+	<div class="overview-pie" style="position: relative; left: 140vh; bottom: 45vh;">
+		<app-task-pie [completeCount]="completeCount" [incompleteCount]="incompleteCount"></app-task-pie>
+	</div>
+</div>
