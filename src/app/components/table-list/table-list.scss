@@ -1,11 +1,14 @@
 table {
-	width: 100%;
-    position: relative;
+  position: relative;
+  top: 20px;
+  left: 20px;
+	width: 60%;
 	margin: 2;
 	font-family: 'Fira Code', Arial, sans-serif;
 	background: #fff;
-    border-collapse: collapse;
-    border-radius: 22px;
+  border-collapse: collapse;
+  border-radius: 20px;
+  box-shadow: 0 28px 24px rgba(0,0,0,0.1);
 }
 
 th, td {
@@ -19,6 +22,7 @@ th {
 	font-weight: 600;
 	letter-spacing: 0.03em;
 	color: #333;
+  border-radius: 5px;
 }
 
 tr:hover {
@@ -89,9 +93,37 @@ tbody tr:last-child td {
   left: 220px;
 }
 
+.edit-task-button {
+  background: #3db345;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: 'Fira Code', Arial, sans-serif;
+  margin-right: 10px;
+}
+
+.delete-task-button {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: 'Fira Code', Arial, sans-serif;
+}
+
+.add-item-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .add-item-button {
-position: relative;
-left: 1730px;
+  float: right;
+  margin-bottom: 10px;
   background: white;
   color: black;
   border-radius: 8px;
@@ -99,7 +131,6 @@ left: 1730px;
   font-size: 1rem;
   font-family: Fira Code, Arial, sans-serif;
   font-weight: 500;
-  margin-bottom: 20px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(89, 120, 155, 0.08);
   transition: background 0.2s, box-shadow 0.2s;

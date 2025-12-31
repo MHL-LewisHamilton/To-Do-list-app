@@ -17,9 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 export class TableList {
 
   public showModal = false;
+  public showEditTaskModal = false;
   public hoveringAdd = false;
   public newTaskName: string = '';
   public newTaskDate: string = '';
+  public editTaskName: string = '';
+  public editTaskDate: string = '';
+  public editingItem: Item | null = null;
   public items: Array<Item> = [];
   
 
@@ -27,16 +31,22 @@ export class TableList {
     this.loadTasks();
   }
 
-loadTasks() {
-  this.taskService.getTasks().subscribe((data: Task[]) => {
-    this.items = data.map(t => new Item(t.name, new Date(t.deadline), t.complete, t.id));
-  });
-}
+  loadTasks() {
+    this.taskService.getTasks().subscribe((data: Task[]) => {
+      this.items = data.map(t => new Item(t.name, new Date(t.deadline), t.complete, t.id));
+    });
+  }
 
 
   addItem(name: string, date: string) {
     const task: Task = { name, deadline: date, complete: false };
     this.taskService.addTask(task).subscribe(() => {
+      this.loadTasks();
+    });
+  }
+
+  removeItem(item: Item) {
+    this.taskService.deleteTaskById(item.id!).subscribe(() => {
       this.loadTasks();
     });
   }
@@ -64,6 +74,29 @@ loadTasks() {
 
   openModal() {
     this.showModal = true;
+  }
+
+  openEditTaskModal(item: Item) {
+    this.editingItem = item;
+    this.editTaskName = item.name;
+    this.editTaskDate = item.date.toISOString().split('T')[0];
+    this.showEditTaskModal = true;
+  }
+
+  closeEditModal() {
+    this.showEditTaskModal = false;
+    this.editingItem = null;
+    this.editTaskName = '';
+    this.editTaskDate = '';
+  }
+
+  onEditSubmit() {
+    if (this.editingItem && this.editTaskName && this.editTaskDate) {
+      this.editingItem.name = this.editTaskName;
+      this.editingItem.date = new Date(this.editTaskDate);
+      this.updateItem(this.editingItem);
+      this.closeEditModal();
+    }
   }
 
   closeModal() {
