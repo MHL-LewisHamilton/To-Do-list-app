@@ -1,25 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Item } from '../../models/item.model';
 import { TaskService, Task } from '../../services/task.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TaskPieComponent } from '../task-pie/task-pie';
 
 @Component({
   selector: 'app-table-list',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule, TaskPieComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './table-list.html',
   styleUrl: './table-list.scss',
 })
 export class TableList {
+  @Output() tasksChanged = new EventEmitter<void>();
 
   public showModal = false;
+  public showEditTaskModal = false;
   public hoveringAdd = false;
   public newTaskName: string = '';
   public newTaskDate: string = '';
+  public editTaskName: string = '';
+  public editTaskDate: string = '';
+  public editingItem: Item | null = null;
   public items: Array<Item> = [];
   
 
@@ -27,16 +33,23 @@ export class TableList {
     this.loadTasks();
   }
 
-loadTasks() {
-  this.taskService.getTasks().subscribe((data: Task[]) => {
-    this.items = data.map(t => new Item(t.name, new Date(t.deadline), t.complete, t.id));
-  });
-}
+  loadTasks() {
+    this.taskService.getTasks().subscribe((data: Task[]) => {
+      this.items = data.map(t => new Item(t.name, new Date(t.deadline), t.complete, t.id));
+      this.tasksChanged.emit();
+    });
+  }
 
 
   addItem(name: string, date: string) {
     const task: Task = { name, deadline: date, complete: false };
     this.taskService.addTask(task).subscribe(() => {
+      this.loadTasks();
+    });
+  }
+
+  removeItem(item: Item) {
+    this.taskService.deleteTaskById(item.id!).subscribe(() => {
       this.loadTasks();
     });
   }
@@ -64,6 +77,29 @@ loadTasks() {
 
   openModal() {
     this.showModal = true;
+  }
+
+  openEditTaskModal(item: Item) {
+    this.editingItem = item;
+    this.editTaskName = item.name;
+    this.editTaskDate = item.date.toISOString().split('T')[0];
+    this.showEditTaskModal = true;
+  }
+
+  closeEditModal() {
+    this.showEditTaskModal = false;
+    this.editingItem = null;
+    this.editTaskName = '';
+    this.editTaskDate = '';
+  }
+
+  onEditSubmit() {
+    if (this.editingItem && this.editTaskName && this.editTaskDate) {
+      this.editingItem.name = this.editTaskName;
+      this.editingItem.date = new Date(this.editTaskDate);
+      this.updateItem(this.editingItem);
+      this.closeEditModal();
+    }
   }
 
   closeModal() {

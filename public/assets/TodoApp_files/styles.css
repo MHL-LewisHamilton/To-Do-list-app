@@ -1,0 +1,11 @@
+/* src/styles.scss */
+body {
+  margin: 20px;
+  padding: 0;
+  box-sizing: border-box;
+  background: url(/assets/background-image.jpeg);
+  background-size: cover;
+}
+
+/* angular:styles/global:styles */
+/*# sourceMappingURL=styles.css.map */
