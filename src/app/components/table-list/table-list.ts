@@ -6,6 +6,7 @@ import { Item } from '../../models/item.model';
 import { TaskService, Task } from '../../services/task.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskPieComponent } from '../task-pie/task-pie';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-table-list',
@@ -68,6 +69,13 @@ export class TableList {
 
   markAsComplete(item: Item) {
     this.updateItem(item);
+    if (item.complete) {
+    confetti({
+      particleCount: 60,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+    }
   }
 
   formatDate(date: Date): string {

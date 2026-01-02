@@ -10,7 +10,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of items">
-            <td>{{ item.name }}</td>
+            <td>{{ item.name }}
+              <span *ngIf="item.complete" class="checkmark-animate">&#10003;</span>
+            </td>
             <td>{{ formatDate(item.date) }}</td>
             <td>
                 <input type="checkbox" [(ngModel)]="item.complete" (change)="markAsComplete(item)"/>
