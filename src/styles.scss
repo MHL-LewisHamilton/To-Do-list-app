@@ -1,7 +1,9 @@
 body {
-    margin: 20px;
+    margin-top: 150px;
     padding: 0;
-    box-sizing: border-box;
-    background: url('/assets/background-image.jpeg') ;
+    overflow: hidden;
+    background: url('/assets/background-image.jpeg');
+    background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
