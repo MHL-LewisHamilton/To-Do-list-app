@@ -4,5 +4,6 @@ export class Item {
         public date: Date,
         public complete: boolean,
         public id?: number,
+        public taskType: string = 'personal',
     ) {}
 }

@@ -7,6 +7,7 @@ export interface Task {
     name: string;
     deadline: string;
     complete: boolean;
+    taskType: string;
 }
 
 @Injectable({

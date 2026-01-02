@@ -1,29 +1,43 @@
+
+
+<div class="table-list-filters">
+  <button [class.active]="currentFilter === 'all'" (click)="setFilter('all')">All</button>
+  <button [class.active]="currentFilter === 'personal'" (click)="setFilter('personal')">Personal</button>
+  <button [class.active]="currentFilter === 'work'" (click)="setFilter('work')">Work</button>
+</div>
+<div class="table-list-status-filters">
+  <button [class.active]="statusFilter === false" (click)="toggleStatusFilter(false)">To Do</button>
+  <button [class.active]="statusFilter === true" (click)="toggleStatusFilter(true)">Complete</button>
+</div>
+
 <button class='add-item-button' (click)="openModal()">Add Item</button>
-<table>
+<div class="table-list-scrollable">
+  <table>
     <thead>
-        <tr>
-            <th>Task</th>
-            <th>Deadline</th>
-            <th>Complete</th>
-            <th>Actions</th>
-        </tr>
+      <tr>
+        <th>Task</th>
+        <th>Deadline</th>
+        <th>Complete</th>
+        <th>Actions</th>
+      </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let item of items">
-            <td>{{ item.name }}
-              <span *ngIf="item.complete" class="checkmark-animate">&#10003;</span>
-            </td>
-            <td>{{ formatDate(item.date) }}</td>
-            <td>
-                <input type="checkbox" [(ngModel)]="item.complete" (change)="markAsComplete(item)"/>
-            </td>
-            <td>
-              <button class="edit-task-button" type="button" (click)="openEditTaskModal(item)">Edit Task</button>
-              <button class="delete-task-button" type="button" (click)="removeItem(item)">Delete Task</button>
-            </td>
-        </tr>
+    <tbody [class.fading]="isFading">
+      <tr *ngFor="let item of filteredItems()">
+        <td>{{ item.name }}
+          <span *ngIf="item.complete" class="checkmark-animate">&#10003;</span>
+        </td>
+        <td>{{ formatDate(item.date) }}</td>
+        <td>
+          <input type="checkbox" [(ngModel)]="item.complete" (change)="markAsComplete(item)"/>
+        </td>
+        <td>
+          <button class="edit-task-button" type="button" (click)="openEditTaskModal(item)">Edit Task</button>
+          <button class="delete-task-button" type="button" (click)="removeItem(item)">Delete Task</button>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+</div>
 
 
 <div class="modal-backdrop" *ngIf="showModal">
@@ -38,6 +52,14 @@
       <label class="deadline-label">
         Deadline:
         <input type="date" [(ngModel)]="newTaskDate" name="taskDate" required />
+      </label>
+      <br>
+      <label class="task-type-label">
+        Type:
+        <select [(ngModel)]="newTaskType" name="taskType" required>
+          <option value="personal">Personal</option>
+          <option value="work">Work</option>
+        </select>
       </label>
       <br>
       <button class='submit-button' type="submit">Add</button>
@@ -58,6 +80,14 @@
       <label class="deadline-label">
         Deadline:
         <input type="date" [(ngModel)]="editTaskDate" name="editTaskDate" required />
+      </label>
+      <br>
+      <label class="task-type-label">
+        Type:
+        <select [(ngModel)]="editTaskType" name="editTaskType" required>
+          <option value="personal">Personal</option>
+          <option value="work">Work</option>
+        </select>
       </label>
       <br>
       <button class='submit-button' type="submit">Save</button>
